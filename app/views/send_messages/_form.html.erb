@@ -1,0 +1,67 @@
+<%= form_with(model: send_message) do |form| %>
+  <% if send_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(send_message.errors.count, "error") %> prohibited this send_message from being saved:</h2>
+
+      <ul>
+        <% send_message.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :srial_number %>
+    <%= form.text_field :srial_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vehicle_number %>
+    <%= form.text_field :vehicle_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product %>
+    <%= form.text_field :product %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weight_type %>
+    <%= form.text_field :weight_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :first_weight %>
+    <%= form.number_field :first_weight %>
+  </div>
+
+  <div class="field">
+    <%= form.label :second_weight %>
+    <%= form.number_field :second_weight %>
+  </div>
+
+  <div class="field">
+    <%= form.label :net_weight %>
+    <%= form.number_field :net_weight %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cash %>
+    <%= form.number_field :cash %>
+  </div>
+
+  <div class="field">
+    <%= form.label :party_id %>
+    <%= form.text_field :party_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :driver_id %>
+    <%= form.text_field :driver_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
