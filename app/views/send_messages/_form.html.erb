@@ -1,15 +1,15 @@
 <%= form_with(model: send_message) do |form| %>
-  <% if send_message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(send_message.errors.count, "error") %> prohibited this send_message from being saved:</h2>
+  <%# if send_message.errors.any? %>
+  <!--    <div id="error_explanation">-->
+  <!--      <h2><%#= pluralize(send_message.errors.count, "error") %> prohibited this send_message from being saved:</h2>-->
 
-      <ul>
-        <% send_message.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <!--      <ul>-->
+  <%# send_message.errors.each do |error| %>
+  <!--          <li><%#= error.full_message %></li>-->
+  <%# end %>
+  <!--      </ul>-->
+  <!--    </div>-->
+  <%# end %>
 
   <div class="field">
     <%= form.label :srial_number %>
@@ -32,36 +32,38 @@
   </div>
 
   <div class="field">
-    <%= form.label :first_weight %>
+    <%= form.label :before_load_weight %>
     <%= form.number_field :first_weight %>
   </div>
 
   <div class="field">
-    <%= form.label :second_weight %>
-    <%= form.number_field :second_weight %>
+    <%= form.label :after_load_weight %>
+    <%= form.number_field :before_load_weight %>
   </div>
 
   <div class="field">
     <%= form.label :net_weight %>
-    <%= form.number_field :net_weight %>
+    <%= form.number_field :after_load_weight %>
   </div>
 
   <div class="field">
     <%= form.label :cash %>
     <%= form.number_field :cash %>
   </div>
+  <div class="row">
+    <div class="col-md-12">
 
-  <div class="field">
-    <%= form.label :party_id %>
-    <%= form.text_field :party_id %>
+      <%= select_tag :'party_id', options_for_select(Party.all.map { |c| [c.name, c.id] }), :multiple => true,:include_blank => false, class: "form-control select2" %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :driver_id %>
-    <%= form.text_field :driver_id %>
+    <%= select_tag :'driver_id', options_for_select(Driver.all.map { |c| [c.name, c.id] }), prompt: 'Select Driver', class: "form-control select2" %>
+
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit id: "commit" %>
   </div>
 <% end %>

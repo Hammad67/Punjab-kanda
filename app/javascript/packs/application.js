@@ -7,10 +7,28 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 require("jquery")
+
+
+import $ from 'jquery'
+import 'select2/dist/css/select2.css'
+import 'select2'
+/// if you don't have turnbolinks then use this:
+//// document.addEventListener('DOMContentLoaded', () => { 
+window.addEventListener('turbolinks:load', () => {
+  $('.select2').select2({
+    tags: true,
+    tokenSeparators: [',', ' ']
+  });
+})
+
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-$(document).ready(function() {
-    console.log("ready!");
-});
+// $(document).ready(function() {
+//     console.log("ready!");
+//     $( ".dropdown" ).select2({
+//         theme: "bootstrap"
+//     });
+// });

@@ -35,12 +35,12 @@ ActiveRecord::Schema.define(version: 2022_02_11_044459) do
     t.string "vehicle_number"
     t.string "product"
     t.string "weight_type"
-    t.integer "first_weight"
-    t.integer "second_weight"
+    t.integer "before_load_weight"
+    t.integer "after_load_weight"
     t.integer "net_weight"
     t.integer "cash"
-    t.bigint "party_id", null: false
-    t.bigint "driver_id", null: false
+    t.bigint "party_id"
+    t.bigint "driver_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["driver_id"], name: "index_send_messages_on_driver_id"
