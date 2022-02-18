@@ -21,6 +21,10 @@ gem 'jbuilder', '~> 2.7'
 gem "select2-rails"
 gem 'allow_numeric'
 gem 'faraday'
+gem "figaro"
+gem 'phonelib'
+gem 'simple_form'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

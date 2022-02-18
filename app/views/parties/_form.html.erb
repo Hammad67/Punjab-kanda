@@ -1,29 +1,14 @@
-<%= form_with(model: party) do |form| %>
-  <% if party.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(party.errors.count, "error") %> prohibited this party from being saved:</h2>
-
-      <ul>
-        <% party.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= simple_form_for @party do |form| %>
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.input :name %>
   </div>
 
   <div class="field">
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number %>
+    <%= form.input :phone_number %>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.input :address %>
   </div>
 
   <div class="actions">

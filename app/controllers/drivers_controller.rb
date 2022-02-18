@@ -50,7 +50,6 @@ class DriversController < ApplicationController
   # DELETE /drivers/1 or /drivers/1.json
   def destroy
     @driver.destroy
-
     respond_to do |format|
       format.html { redirect_to drivers_url, notice: "Driver was successfully destroyed." }
       format.json { head :no_content }
@@ -62,8 +61,6 @@ class DriversController < ApplicationController
     def set_driver
       @driver = Driver.find(params[:id])
     end
-
-    # Only allow a list of trusted parameters through.
     def driver_params
       params.require(:driver).permit(:name, :phone_number)
     end

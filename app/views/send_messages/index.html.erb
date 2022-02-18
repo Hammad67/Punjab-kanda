@@ -1,45 +1,42 @@
-
-
 <h1>Send Messages</h1>
-
-<table>
+<table class="table table-dark table-bordered">
   <thead>
-    <tr>
-      <th>Srial number</th>
-      <th>Vehicle number</th>
-      <th>Product</th>
-      <th>Weight type</th>
-      <th>First weight</th>
-      <th>Second weight</th>
-      <th>Net weight</th>
-      <th>Cash</th>
-      <th>Party</th>
-      <th>Driver</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Serialnumber</th>
+    <th>Vehiclenumber</th>
+    <th>Product</th>
+    <th>Weighttype</th>
+    <th>BeforeloadWeight</th>
+    <th>AfterloadWeight</th>
+    <th>Netweight</th>
+    <th>Cash</th>
+    <th>Party</th>
+    <th>Driver</th>
+    <th colspan="3">Actions</th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @send_messages.each do |send_message| %>
-      <tr>
-        <td><%= send_message.srial_number %></td>
-        <td><%= send_message.vehicle_number %></td>
-        <td><%= send_message.product %></td>
-        <td><%= send_message.weight_type %></td>
-        <td><%= send_message.before_load_weight %></td>
-        <td><%= send_message.after_load_weight %></td>
-        <td><%= send_message.net_weight %></td>
-        <td><%= send_message.cash %></td>
-        <td><%= send_message.party_id %></td>
-        <td><%= send_message.driver_id %></td>
-        <td><%= link_to 'Show', send_message %></td>
-        <td><%= link_to 'Edit', edit_send_message_path(send_message) %></td>
-        <td><%= link_to 'Destroy', send_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <% @send_messages.each do |send_message| %>
+    <tr>
+      <td><%= send_message.srial_number %></td>
+      <td><%= send_message.vehicle_number %></td>
+      <td><%= send_message.product %></td>
+      <td><%= send_message.weight_type %></td>
+      <td><%= send_message.before_load_weight %></td>
+      <td><%= send_message.after_load_weight %></td>
+      <td><%= send_message.net_weight %></td>
+      <td><%= send_message.cash %></td>
+      <td><%= send_message.party_id %></td>
+      <td><%= send_message.driver_id %></td>
+      <td><%= link_to 'Show', send_message, class: "btn btn-info" %></td>
+      <td><%= link_to 'Edit', edit_send_message_path(send_message), class: "btn btn-warning" %></td>
+      <td><%= link_to 'Destroy', send_message, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Send Message', new_send_message_path %>
+<%= link_to 'New Send Message', new_send_message_path, class: "btn btn-success" %>

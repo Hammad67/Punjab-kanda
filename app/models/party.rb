@@ -1,6 +1,10 @@
 class Party < ApplicationRecord
-    has_many :messages
-    validates_format_of :phone_number, :with =>  /\d[0-9]\)*\z/ , :message => "Only positive number without spaces are allowed"
-    validates :phone_number, length: { is: 11}
+  has_many :messages
+  validates_format_of :phone_number,
+                      :with => /(92)?(2)([0-9]{10})/,
+                      :message => "Phone numbers must be in 923026255627 format."
+  validates_presence_of :name
+  validates_presence_of :phone_number
+
 
 end

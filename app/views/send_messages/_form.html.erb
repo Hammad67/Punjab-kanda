@@ -1,68 +1,44 @@
-<%= form_with(model: send_message) do |form| %>
-  <%# if send_message.errors.any? %>
-  <!--    <div id="error_explanation">-->
-  <!--      <h2><%#= pluralize(send_message.errors.count, "error") %> prohibited this send_message from being saved:</h2>-->
-
-  <!--      <ul>-->
-  <%# send_message.errors.each do |error| %>
-  <!--          <li><%#= error.full_message %></li>-->
-  <%# end %>
-  <!--      </ul>-->
-  <!--    </div>-->
-  <%# end %>
-
-  <div class="field">
-    <%= form.label :srial_number %>
-    <%= form.text_field :srial_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vehicle_number %>
-    <%= form.text_field :vehicle_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :product %>
-    <%= form.text_field :product %>
-  </div>
-
-  <div class="field">
-    <%= form.label :weight_type %>
-    <%= form.text_field :weight_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :before_load_weight %>
-    <%= form.number_field :first_weight %>
-  </div>
-
-  <div class="field">
-    <%= form.label :after_load_weight %>
-    <%= form.number_field :before_load_weight %>
-  </div>
-
-  <div class="field">
-    <%= form.label :net_weight %>
-    <%= form.number_field :after_load_weight %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cash %>
-    <%= form.number_field :cash %>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-
-      <%= select_tag :'party_id', options_for_select(Party.all.map { |c| [c.name, c.id] }), :multiple => true,:include_blank => false, class: "form-control select2" %>
+<%= simple_form_for @send_message do |form| %>
+  <% if @send_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(send_message.errors.count, "error") %> prohibited this send_message from being saved:</h2>
+      <ul>
+        <% @send_message.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
     </div>
-  </div>
-
+  <% end %>
   <div class="field">
-    <%= form.label :driver_id %>
-    <%= select_tag :'driver_id', options_for_select(Driver.all.map { |c| [c.name, c.id] }), prompt: 'Select Driver', class: "form-control select2" %>
-
+    <%= form.input :srial_number %>
   </div>
+  <div class="field">
+    <%= form.input :vehicle_number %>
+  </div>
+  <div class="field">
+    <%= form.input :product %>
+  </div>
+  <div class="field">
+    <%= form.input :weight_type %>
+  </div>
+  <div class="field">
+    <%= form.input :before_load_weight %>
+  </div>
+  <div class="field">
+    <%= form.input :after_load_weight %>
+  </div>
+  <div class="field">
+    <%= form.input :cash %>
+  </div>
+  <div class="field">
+    <%=form.label :"Select party" %>
+      <%=select_tag :'party_id', options_for_select(Party.all.map { |c| [c.name, c.id] }), :multiple => true, :include_blank => false, class: "form-control select2" %>
+    </div>
 
+  <br><div class="field">
+    <%=form.label :"Select Driver" %>
+    <%= select_tag :'driver_id', options_for_select(Driver.all.map { |c| [c.name, c.id] }), prompt: 'Select Driver', class: "form-control select2" %>
+  </div>
   <div class="actions">
     <%= form.submit id: "commit" %>
   </div>
