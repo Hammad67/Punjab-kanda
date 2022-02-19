@@ -27,10 +27,9 @@
       <td><%= send_message.after_load_weight %></td>
       <td><%= send_message.net_weight %></td>
       <td><%= send_message.cash %></td>
-      <td><%= send_message.party_id %></td>
-      <td><%= send_message.driver_id %></td>
+      <td><%= Party.find_by(@send_message.party_id).name %></td>
+      <td><%= Driver.find_by(@send_message.driver_id).name %></td>
       <td><%= link_to 'Show', send_message, class: "btn btn-info" %></td>
-      <td><%= link_to 'Edit', edit_send_message_path(send_message), class: "btn btn-warning" %></td>
       <td><%= link_to 'Destroy', send_message, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
     </tr>
   <% end %>
