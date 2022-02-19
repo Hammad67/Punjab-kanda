@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.7'
 gem "select2-rails"
 gem 'allow_numeric'
 gem 'faraday'
-gem "figaro"
+
 gem 'phonelib'
 gem 'simple_form'
 
@@ -32,7 +32,7 @@ gem 'simple_form'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-gem 'dotenv', '~> 2.1', '>= 2.1.1'
+gem 'dotenv'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

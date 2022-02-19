@@ -14,19 +14,43 @@ class SendMessagesController < ApplicationController
 
   def create
     @messages_errors=[]
+    @send_message = SendMessage.new(send_message_params)
+    @send_message.valid?
     binding.pry
-    if params[:party_id].present?
-      params[:party_id].each do |party_id|
-        save_messages_party(party_id.to_i)
+    if @send_message.errors.present?
+      binding.pry
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @send_message.errors, status: :unprocessable_entity }
       end
-    elsif params[:driver_id].present?
-      save_messages_driver(params[:driver_id].to_i)
-    end
-    if @messages_errors.present?
-      format.html { render :new, status: :unprocessable_entity }
-      format.json { render json: @send_message.errors, status: :unprocessable_entity }
     else
-      redirect_to root_path, notice: "Message Send Succesfully"
+      if params[:party_id].present?
+        binding.pry
+        params[:party_id].each do |party_id|
+          save_messages_party(party_id.to_i)
+        end
+      end
+      if params[:driver_id].present?
+        binding.pry
+        save_messages_driver(params[:driver_id].to_i)
+      end
+      if !params[:party_id].present? && !params[:driver_id].present?
+        binding.pry
+        @send_message.errors.add :base, "Select atleast one party or driver"
+        respond_to do |format|
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @send_message.errors, status: :unprocessable_entity }
+        end
+      elsif @messages_errors.present?
+        binding.pry
+        respond_to do |format|
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @send_message.errors, status: :unprocessable_entity }
+        end
+      else
+        binding.pry
+        redirect_to root_path, notice: "Message Send Succesfully"
+      end
     end
   end
   def destroy
