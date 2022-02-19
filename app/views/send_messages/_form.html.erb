@@ -6,6 +6,12 @@
         <% @send_message.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
+        <% if @messages_errors.errors.any? %>
+          <li>Message not sent successfully to them</li>
+          <% @messages_errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+         <% end %>
       </ul>
     </div>
   <% end %>
@@ -19,7 +25,8 @@
     <%= form.input :product %>
   </div>
   <div class="field">
-    <%= form.input :weight_type %>
+    <%=form.label :"Weight type" %>
+    <%= select_tag :weight_type, options_for_select(SendMessage.weight_types.map { |k, v| [k, v] }), prompt: 'Select Weight Type', class: "form-control", name:"send_message[weight_type]" %>
   </div>
   <div class="field">
     <%= form.input :before_load_weight %>
