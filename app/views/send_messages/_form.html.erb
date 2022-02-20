@@ -6,12 +6,6 @@
         <% @send_message.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
-        <% if @messages_errors.errors.any? %>
-          <li>Message not sent successfully to them</li>
-          <% @messages_errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-         <% end %>
       </ul>
     </div>
   <% end %>
@@ -36,6 +30,10 @@
   </div>
   <div class="field">
     <%= form.input :cash %>
+  </div>
+  <div class="field">
+    <%= form.input :phone_number, class: "form-control" %>
+    <p>Number Format should be 923026255612<p>
   </div>
   <div class="field">
     <%=form.label :"Select party" %>
