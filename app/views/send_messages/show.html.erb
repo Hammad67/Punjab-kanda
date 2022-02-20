@@ -1,31 +1,59 @@
-<table class="table table-light">
-  <thead>
-  <tr>
-    <th scope="col">Serialnumber</th>
-    <th scope="col">Vehiclenumber</th>
-    <th scope="col">Product</th>
-    <th scope="col">Weighttype</th>
-    <th scope="col">Srialnumber</th>
-    <th scope="col">BeforeloadWeight</th>
-    <th scope="col">AfterloadWeight</th>
-    <th scope="col">Netweight</th>
-    <th scope="col">Cash</th>
-    <th scope="col">Party</th>
-    <th scope="col">Driver</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td><%= @send_message.srial_number %></td>
-    <td><%= @send_message.vehicle_number %></td>
-    <td><%= @send_message.vehicle_number %></td>
-    <td><%= @send_message.weight_type %></td>
-    <td><%= @send_message.before_load_weight %></td>
-    <td><%= @send_message.after_load_weight %></td>
-    <td><%= @send_message.cash %></td>
-    <td><%= Party.find_by(@send_message.party_id).name %></td>
-    <td><%= Driver.find_by(@send_message.driver_id).name %></td>
-  </tr>
-  </tbody>
-</table>
-<%= link_to 'Back', send_messages_path,class:"btn btn-secondry"%>
+<p>
+  <strong>Srial number:</strong>
+  <%= @send_message.srial_number %>
+</p>
+
+<p>
+  <strong>Vehicle number:</strong>
+  <%= @send_message.vehicle_number %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @send_message.product %>
+</p>
+
+<p>
+  <strong>Weight type:</strong>
+  <%= @send_message.weight_type %>
+</p>
+
+<p>
+  <strong>First weight:</strong>
+  <%= @send_message.before_load_weight %>
+</p>
+
+<p>
+  <strong>Second weight:</strong>
+  <%= @send_message.after_load_weight %>
+</p>
+
+<p>
+  <strong>Net weight:</strong>
+  <%= @send_message.net_weight %>
+</p>
+
+<p>
+  <strong>Cash:</strong>
+  <%= @send_message.cash %>
+</p>
+<% if @send_message.phone_number.present? %>
+<p>
+  <strong>Cash:</strong>
+  <%= @send_message.phone_number%>
+</p>
+<%end%>
+<%if @send_message.party_id.present?%>
+<p>
+  <strong>Party:</strong>
+  Name: <%= Party.find_by(id: @send_message.party_id).name %> Phone Number: (<%=Party.find_by(id: @send_message.party_id).phone_number %>)
+</p>
+<%end%>
+<%if @send_message.driver_id.present?%>
+<p>
+  <strong>Driver:</strong>
+  Name: <%= Driver.find_by(id: @send_message.driver_id).name  %> Phone Number: (<%=Driver.find_by(id: @send_message.driver_id).phone_number %>)
+</p>
+<%end%>
+
+<%= link_to 'Back', send_messages_path %>

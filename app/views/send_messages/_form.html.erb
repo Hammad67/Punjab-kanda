@@ -1,14 +1,27 @@
 <%= simple_form_for @send_message do |form| %>
-  <% if @send_message.errors.any? %>
+  <% if @send_message.errors.any? || @not_send_messages_phone_numbers.present? || @not_send_messages_response.present? %>
     <div id="error_explanation">
       <h2><%= pluralize(send_message.errors.count, "error") %> prohibited this send_message from being saved:</h2>
       <ul>
         <% @send_message.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
+        <% if @not_send_messages_phone_numbers.present? %>
+          <li>Messages no sent successfully on these numbers</li>
+          <% @not_send_messages_phone_numbers.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        <% end %>
+        <% if @not_send_messages_response.present? %>
+          <li>Response from SENDPK.COM</li>
+          <% @not_send_messages_response.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        <% end %>
       </ul>
     </div>
   <% end %>
+    
   <div class="field">
     <%= form.input :srial_number %>
   </div>
@@ -45,6 +58,6 @@
     <%= select_tag :'driver_id', options_for_select(Driver.all.map { |c| [c.name, c.id] }), prompt: 'Select Driver', class: "form-control select2" %>
   </div>
   <div class="actions">
-    <%= form.submit id: "commit" %>
+    <%= form.submit id: "commit", value:"Send message" %>
   </div>
 <% end %>

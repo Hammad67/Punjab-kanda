@@ -1,5 +1,5 @@
 <h1>Send Messages</h1>
-<table class="table table-dark table-bordered">
+<table class="table table-bordered">
   <thead>
   <tr>
     <th>Serialnumber</th>
@@ -10,6 +10,7 @@
     <th>AfterloadWeight</th>
     <th>Netweight</th>
     <th>Cash</th>
+    <th>Phone Number</th>
     <th>Party</th>
     <th>Driver</th>
     <th colspan="3">Actions</th>
@@ -27,10 +28,11 @@
       <td><%= send_message.after_load_weight %></td>
       <td><%= send_message.net_weight %></td>
       <td><%= send_message.cash %></td>
-      <td><%= Party.find_by(@send_message.party_id).name %></td>
-      <td><%= Driver.find_by(@send_message.driver_id).name %></td>
-      <td><%= link_to 'Show', send_message, class: "btn btn-info" %></td>
-      <td><%= link_to 'Destroy', send_message, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+      <td><%= send_message.phone_number if  send_message.phone_number.present? %></td>
+      <td><%= Party.find_by(id: send_message.party_id).name if send_message.party_id.present?%></td>
+      <td><%= Driver.find_by(id: send_message.driver_id).name if send_message.driver_id.present? %></td>
+      <td><%= link_to 'Show', send_message, class: "" %></td>
+      <td><%= link_to 'Destroy', send_message, method: :delete, data: { confirm: 'Are you sure?' }, class: "" %></td>
     </tr>
   <% end %>
   </tbody>
