@@ -32,7 +32,6 @@ class SendMessage < ApplicationRecord
     Total Amoount:  #{self.cash}"
     api_key = ENV["API_KEY"]
     brand_name = ENV["BRAND_NAME"]
-
-    #response= Faraday.post("https://sendpk.com/api/sms.php?api_key=#{api_key}&sender=#{brand_name}&mobile=#{phone_number}&message=#{message}")
+    response= Faraday.post("https://sendpk.com/api/sms.php?api_key=#{api_key}&sender=#{brand_name}&mobile=#{phone_number}&message=#{message}")
   end
-end
+end+1 (139) 811-4206
