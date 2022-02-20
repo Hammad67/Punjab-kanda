@@ -10,5 +10,5 @@ class SendMessage < ApplicationRecord
   def update_net_weight
     self.write_attribute(:net_weight, (self.after_load_weight.to_i - self.before_load_weight.to_i))
   end
-  
+
 end

@@ -49,7 +49,9 @@ class PartiesController < ApplicationController
 
   # DELETE /parties/1 or /parties/1.json
   def destroy
-    @party.destroy
+    send_messages = SendMessage.where(party_id: @party.id)
+    send_messages.destroy_all
+    @party.delete
 
     respond_to do |format|
       format.html { redirect_to parties_url, notice: "Party was successfully destroyed." }
@@ -61,6 +63,7 @@ class PartiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_party
       @party = Party.find(params[:id])
+      binding.pry
     end
 
     # Only allow a list of trusted parameters through.

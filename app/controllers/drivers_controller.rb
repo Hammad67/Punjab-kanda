@@ -49,7 +49,9 @@ class DriversController < ApplicationController
 
   # DELETE /drivers/1 or /drivers/1.json
   def destroy
-    @driver.destroy
+    send_messages = SendMessage.where(driver_id: @driver.id)
+    send_messages.destroy_all
+    @driver.delete
     respond_to do |format|
       format.html { redirect_to drivers_url, notice: "Driver was successfully destroyed." }
       format.json { head :no_content }
