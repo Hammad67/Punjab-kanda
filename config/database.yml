@@ -27,6 +27,7 @@ development:
   username: hasan
   password: 1434virk
   database: producssat_hunt_user_development
+  host: localhost
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
